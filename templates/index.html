@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propositional Logic Evaluator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ Propositional Logic Evaluator</h1>
+            <p class="subtitle">Generate truth tables for logical formulas</p>
+        </header>
+
+        <div class="card">
+            <div class="input-section">
+                <label for="formula">Enter your logical formula:</label>
+                <input type="text" id="formula" placeholder="e.g., p ^ q | r" autocomplete="off">
+                <button id="evaluateBtn" onclick="evaluateFormula()">Generate Truth Table</button>
+            </div>
+
+            <div class="operators-info">
+                <h3>Supported Operators:</h3>
+                <div class="operators-grid">
+                    <div class="operator-item">
+                        <span class="op">!</span>
+                        <span class="desc">NOT (Negation)</span>
+                    </div>
+                    <div class="operator-item">
+                        <span class="op">^</span>
+                        <span class="desc">AND (Conjunction)</span>
+                    </div>
+                    <div class="operator-item">
+                        <span class="op">|</span>
+                        <span class="desc">OR (Disjunction)</span>
+                    </div>
+                    <div class="operator-item">
+                        <span class="op">-></span>
+                        <span class="desc">IMPLIES (Implication)</span>
+                    </div>
+                    <div class="operator-item">
+                        <span class="op"><-></span>
+                        <span class="desc">BICONDITIONAL (Equivalence)</span>
+                    </div>
+                </div>
+                <div class="examples">
+                    <h4>Examples:</h4>
+                    <ul>
+                        <li><code>p ^ q</code> - p AND q</li>
+                        <li><code>p | q</code> - p OR q</li>
+                        <li><code>! p</code> - NOT p</li>
+                        <li><code>p -> q</code> - p IMPLIES q</li>
+                        <li><code>( p ^ q ) | r</code> - (p AND q) OR r</li>
+                    </ul>
+                    <p class="note"><strong>Note:</strong> Use spaces between operators and variables. Use parentheses for grouping.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="error" class="error"></div>
+        <div id="loading" class="loading">Generating truth table...</div>
+
+        <div id="result" class="result-section">
+            <h2>Truth Table</h2>
+            <div class="formula-display">
+                Formula: <span id="displayFormula"></span>
+            </div>
+            <div class="table-container">
+                <table id="truthTable"></table>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Enter formulas with spaces between operators and variables</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

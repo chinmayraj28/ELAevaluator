@@ -64,7 +64,7 @@ class Formula():
                 else:
                     raise Exception(self.stack, "is an invalid formula")
             index +=1
-        #this isnt the proper modular way to code this
+        #Fuck this isnt the proper modular way to code this
         index = 0
         while index <len(new_stack):
             if new_stack[index] == self.setSymbol[3]:
@@ -85,11 +85,12 @@ class Formula():
             index +=1
         index = 0
         while index <len(new_stack):
-            if new_stack[index] == self.setSymbol[4]:
+            if new_stack[index] == self.setSymbol[5]:  # -> (IMPLIES)
                 a = new_stack[index-1]
                 b = new_stack[index+1]
                 new_stack.pop(index)
                 new_stack.pop(index)
+                # IMPLIES: False only when a=True and b=False
                 if a == 1 and b == 0:
                     new_stack[index-1] = 0
                 else:
@@ -97,12 +98,13 @@ class Formula():
             index +=1
         index = 0
         while index <len(new_stack):
-            if new_stack[index] == self.setSymbol[3]:
+            if new_stack[index] == self.setSymbol[6]:  # <-> (BICONDITIONAL)
                 a = new_stack[index-1]
                 b = new_stack[index+1]
                 new_stack.pop(index)
                 new_stack.pop(index)
-                new_stack[index-1] = (a==b)
+                # BICONDITIONAL: True when both values are equal
+                new_stack[index-1] = 1 if (a==b) else 0
             index +=1
         return new_stack[0]
                 
