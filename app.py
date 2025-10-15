@@ -12,7 +12,7 @@ def index():
 @app.route('/evaluate', methods=['POST'])
 def evaluate():
     try:
-        data = request.get_json()
+        data = request.json
         formula_string = data.get('formula', '')
         
         if not formula_string:
