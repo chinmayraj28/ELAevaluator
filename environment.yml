@@ -1,0 +1,9 @@
+name: proplogic
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+    - flask==3.0.0
